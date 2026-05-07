@@ -1,7 +1,7 @@
 // Daftar produk
 const products = [
   { id: 1, name: "AQUA", price: 2000, img: "aqua.jpg" },
-  { id: 2, name: "BONCABE", price: 1000, img: "boncabe.webp" },
+  { id: 2, name: "BONCABE", price: 1000, img: "boncabe.jpg" },
   { id: 3, name: "CHOCOPIE", price: 2000, img: "chocopie.jpg" },
   { id: 4, name: "MAXICORN", price: 2000, img: "maxicorn.jpg" },
   { id: 5, name: "QTELLA", price: 2000, img: "qtella.png" },
