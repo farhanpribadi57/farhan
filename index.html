@@ -2,24 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>farhanshop</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Farhan Shop</title>
+
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <div class="container">
-      <h1 class="marquee">SELAMAT DATANG DI MINIMARKET</h1>
 
+      <h1 class="marquee">
+        SELAMAT DATANG DI MINIMARKET
+      </h1>
+
+      <!-- SEARCH -->
+      <input
+        type="text"
+        id="search"
+        placeholder="Cari produk..."
+      />
+
+      <!-- PRODUK -->
       <div id="product-list">
+
         <h2>DAFTAR PRODUK</h2>
-        <div id="products" class="product-container"></div>
+
+        <div
+          id="products"
+          class="product-container"
+        ></div>
+
       </div>
 
+      <!-- CART -->
       <div id="cart">
+
         <h2>Keranjang Belanja</h2>
+
         <ul id="cart-items"></ul>
-        <p>Total: Rp <span id="total-price">0</span></p>
-        <button id="checkout-btn">Checkout</button>
+
+        <h3>
+          Total:
+          Rp <span id="total-price">0</span>
+        </h3>
+
+        <button id="checkout-btn">
+          Checkout
+        </button>
+
       </div>
     </div>
 
