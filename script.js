@@ -8,44 +8,7 @@ const products = [
   { id: 3, name: "CHOCOPIE", price: 2000, img: "chocopie.jpg" },
   { id: 4, name: "MAXICORN", price: 2000, img: "maxicorn.jpg" },
   { id: 5, name: "QTELLA", price: 2000, img: "qtella.png" },
-
-  // Produk pack
-  {
-    id: 6,
-    name: "AQUA 1 PACK",
-    price: 24000,
-    img: "aqua-pack.jpg",
-    qtyPack: 12,
-  },
-  {
-    id: 7,
-    name: "BONCABE 1 PACK",
-    price: 12000,
-    img: "boncabe-pack.jpg",
-    qtyPack: 12,
-  },
-  {
-    id: 8,
-    name: "CHOCOPIE 1 PACK",
-    price: 24000,
-    img: "chocopie-pack.jpg",
-    qtyPack: 12,
-  },
-  {
-    id: 9,
-    name: "MAXICORN 1 PACK",
-    price: 24000,
-    img: "maxicorn-pack.jpg",
-    qtyPack: 12,
-  },
-  {
-    id: 10,
-    name: "QTELLA 1 PACK",
-    price: 24000,
-    img: "qtella-pack.png",
-    qtyPack: 12,
-  },
-];
+  { id: 5, name: "......", price: 2000, img: "qtella.png" },
 
 // =======================
 // KERANJANG
