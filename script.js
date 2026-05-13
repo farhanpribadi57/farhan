@@ -8,7 +8,8 @@ const products = [
   { id: 3, name: "CHOCOPIE", price: 2000, img: "chocopie.jpg" },
   { id: 4, name: "MAXICORN", price: 2000, img: "maxicorn.jpg" },
   { id: 5, name: "QTELLA", price: 2000, img: "qtella.png" },
-  { id: 5, name: "......", price: 2000, img: "qtella.png" },
+  { id: 6, name: "SNACK", price: 3000, img: "snack.jpg" },
+];
 
 // =======================
 // KERANJANG
@@ -66,14 +67,16 @@ function displayProducts(keyword = "") {
 
   productsContainer.innerHTML = "";
 
-  const filteredProducts = products.filter((product) =>
-    product.name
-      .toLowerCase()
-      .includes(keyword.toLowerCase())
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name
+        .toLowerCase()
+        .includes(keyword.toLowerCase())
   );
 
   filteredProducts.forEach((product) => {
-    const productDiv = document.createElement("div");
+    const productDiv =
+      document.createElement("div");
 
     productDiv.classList.add("product");
 
@@ -116,7 +119,9 @@ function addToCart(productId) {
 // =======================
 
 function increaseQty(id) {
-  const item = cart.find((i) => i.id === id);
+  const item = cart.find(
+    (i) => i.id === id
+  );
 
   if (item) {
     item.quantity++;
@@ -130,13 +135,17 @@ function increaseQty(id) {
 // =======================
 
 function decreaseQty(id) {
-  const item = cart.find((i) => i.id === id);
+  const item = cart.find(
+    (i) => i.id === id
+  );
 
   if (item) {
     item.quantity--;
 
     if (item.quantity <= 0) {
-      cart = cart.filter((i) => i.id !== id);
+      cart = cart.filter(
+        (i) => i.id !== id
+      );
     }
 
     updateCart();
@@ -148,7 +157,9 @@ function decreaseQty(id) {
 // =======================
 
 function removeFromCart(id) {
-  cart = cart.filter((item) => item.id !== id);
+  cart = cart.filter(
+    (item) => item.id !== id
+  );
 
   updateCart();
 }
@@ -236,13 +247,20 @@ function checkout() {
     )
   );
 
-  if (isNaN(payment) || payment <= 0) {
-    alert("Masukkan jumlah pembayaran valid.");
+  if (
+    isNaN(payment) ||
+    payment <= 0
+  ) {
+    alert(
+      "Masukkan jumlah pembayaran valid."
+    );
+
     return;
   }
 
   if (payment >= total) {
-    const change = payment - total;
+    const change =
+      payment - total;
 
     alert(
       `Pembayaran berhasil!\nKembalian: Rp ${formatRupiah(
@@ -256,7 +274,9 @@ function checkout() {
 
     localStorage.removeItem("cart");
   } else {
-    alert("Uang anda tidak mencukupi.");
+    alert(
+      "Uang anda tidak mencukupi."
+    );
   }
 }
 
@@ -266,9 +286,14 @@ function checkout() {
 
 document
   .getElementById("search")
-  .addEventListener("input", (e) => {
-    displayProducts(e.target.value);
-  });
+  .addEventListener(
+    "input",
+    (e) => {
+      displayProducts(
+        e.target.value
+      );
+    }
+  );
 
 // =======================
 // EVENT CHECKOUT
@@ -276,7 +301,10 @@ document
 
 document
   .getElementById("checkout-btn")
-  .addEventListener("click", checkout);
+  .addEventListener(
+    "click",
+    checkout
+  );
 
 // =======================
 // LOAD AWAL
