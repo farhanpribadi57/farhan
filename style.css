@@ -7,81 +7,79 @@
 /* BODY */
 body {
   font-family: Arial, sans-serif;
-
   background-image: url("background.jpg");
-
   background-size: cover;
-
   background-position: center;
-
   background-repeat: no-repeat;
-
   min-height: 100vh;
-
   padding: 20px;
+}
+
+/* HEADER LOGO + NAMA */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin-bottom: 20px;
+  padding: 10px;
+
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
 }
 
 /* CONTAINER */
 .container {
   max-width: 1200px;
-
   margin: 0 auto;
-
   padding: 20px;
-
   background-color: rgba(255, 255, 255, 0.9);
-
   border-radius: 10px;
-
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 /* JUDUL */
 h1 {
   text-align: center;
-
   margin-bottom: 20px;
-
   background-color: #007bff;
-
   color: white;
-
   padding: 15px;
-
   border-radius: 5px;
-
   font-size: 28px;
 }
 
 /* SUB JUDUL */
 h2 {
   text-align: center;
-
   margin-bottom: 20px;
-
   background-color: #007bff;
-
   color: white;
-
   padding: 8px 15px;
-
   border-radius: 5px;
-
   display: inline-block;
 }
 
 /* SEARCH */
 #search {
   width: 100%;
-
   padding: 12px;
-
   margin-bottom: 25px;
-
   border: 1px solid #ccc;
-
   border-radius: 8px;
-
   font-size: 16px;
 }
 
@@ -92,49 +90,34 @@ h2 {
 
 .product-container {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 20px;
-
   justify-content: center;
 }
 
 /* CARD PRODUK */
 .product {
   width: 220px;
-
   padding: 15px;
-
   background-color: white;
-
   border: 1px solid #ddd;
-
   text-align: center;
-
   border-radius: 10px;
-
   transition: 0.3s;
-
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .product:hover {
   transform: scale(1.05);
-
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* GAMBAR */
 .product img {
   width: 100%;
-
   height: 150px;
-
   object-fit: cover;
-
   border-radius: 8px;
-
   margin-bottom: 10px;
 }
 
@@ -151,19 +134,12 @@ h2 {
 /* TOMBOL */
 button {
   padding: 10px 15px;
-
   background-color: #007bff;
-
   color: white;
-
   border: none;
-
   cursor: pointer;
-
   margin-top: 10px;
-
   border-radius: 5px;
-
   transition: 0.2s;
 }
 
@@ -174,34 +150,27 @@ button:hover {
 /* KERANJANG */
 #cart {
   margin-top: 30px;
-
   padding: 20px;
-
   background-color: #f1f1f1;
-
   border-radius: 10px;
 }
 
 /* LIST CART */
 #cart-items {
   list-style-type: none;
-
   padding: 0;
-
   margin: 0;
 }
 
 /* ITEM CART */
 #cart-items li {
   padding: 10px 0;
-
   border-bottom: 1px solid #ccc;
 }
 
 /* TOTAL */
 #total-price {
   font-weight: bold;
-
   color: #007bff;
 }
 
@@ -213,5 +182,9 @@ button:hover {
 
   h1 {
     font-size: 22px;
+  }
+
+  .logo-text {
+    font-size: 18px;
   }
 }
