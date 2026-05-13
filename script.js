@@ -3,19 +3,61 @@
 // =======================
 
 const products = [
-  { id: 1, name: "AQUA", price: 2000, img: "aqua.jpg" },
-  { id: 2, name: "BONCABE", price: 1000, img: "boncabe.jpg" },
-  { id: 3, name: "CHOCOPIE", price: 2000, img: "chocopie.jpg" },
-  { id: 4, name: "MAXICORN", price: 2000, img: "maxicorn.jpg" },
-  { id: 5, name: "QTELLA", price: 2000, img: "qtella.png" },
-  { id: 6, name: "SNACK", price: 3000, img: "snack.jpg" },
+  {
+    id: 1,
+    name: "AQUA",
+    price: 2000,
+    img: "aqua.jpg",
+  },
+
+  {
+    id: 2,
+    name: "BONCABE",
+    price: 1000,
+    img: "boncabe.jpg",
+  },
+
+  {
+    id: 3,
+    name: "CHOCOPIE",
+    price: 2000,
+    img: "chocopie.jpg",
+  },
+
+  {
+    id: 4,
+    name: "MAXICORN",
+    price: 2000,
+    img: "maxicorn.jpg",
+  },
+
+  {
+    id: 5,
+    name: "QTELLA",
+    price: 2000,
+    img: "qtella.png",
+  },
+
+  {
+    id: 6,
+    name: "SNACK",
+    price: 3000,
+    img: "snack.jpg",
+  },
 ];
 
 // =======================
 // KERANJANG
 // =======================
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = [];
+
+const savedCart =
+  localStorage.getItem("cart");
+
+if (savedCart) {
+  cart = JSON.parse(savedCart);
+}
 
 // =======================
 // FORMAT RUPIAH
@@ -30,7 +72,10 @@ function formatRupiah(number) {
 // =======================
 
 function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+  );
 }
 
 // =======================
@@ -39,11 +84,17 @@ function saveCart() {
 
 function createProductCard(product) {
   return `
-    <img src="${product.img}" alt="${product.name}" width="120">
+    <img
+      src="${product.img}"
+      alt="${product.name}"
+      width="120"
+    >
 
     <h3>${product.name}</h3>
 
-    <p>Rp ${formatRupiah(product.price)}</p>
+    <p>
+      Rp ${formatRupiah(product.price)}
+    </p>
 
     ${
       product.qtyPack
@@ -61,30 +112,49 @@ function createProductCard(product) {
 // TAMPILKAN PRODUK
 // =======================
 
-function displayProducts(keyword = "") {
+function displayProducts(
+  keyword = ""
+) {
   const productsContainer =
-    document.getElementById("products");
+    document.getElementById(
+      "products"
+    );
 
-  productsContainer.innerHTML = "";
+  if (!productsContainer) return;
 
-  const filteredProducts = products.filter(
-    (product) =>
+  productsContainer.innerHTML =
+    "";
+
+  const filteredProducts =
+    products.filter((product) =>
       product.name
         .toLowerCase()
-        .includes(keyword.toLowerCase())
+        .includes(
+          keyword.toLowerCase()
+        )
+    );
+
+  filteredProducts.forEach(
+    (product) => {
+      const productDiv =
+        document.createElement(
+          "div"
+        );
+
+      productDiv.classList.add(
+        "product"
+      );
+
+      productDiv.innerHTML =
+        createProductCard(
+          product
+        );
+
+      productsContainer.appendChild(
+        productDiv
+      );
+    }
   );
-
-  filteredProducts.forEach((product) => {
-    const productDiv =
-      document.createElement("div");
-
-    productDiv.classList.add("product");
-
-    productDiv.innerHTML =
-      createProductCard(product);
-
-    productsContainer.appendChild(productDiv);
-  });
 }
 
 // =======================
@@ -99,7 +169,8 @@ function addToCart(productId) {
   if (!product) return;
 
   const cartItem = cart.find(
-    (item) => item.id === productId
+    (item) =>
+      item.id === productId
   );
 
   if (cartItem) {
@@ -142,7 +213,9 @@ function decreaseQty(id) {
   if (item) {
     item.quantity--;
 
-    if (item.quantity <= 0) {
+    if (
+      item.quantity <= 0
+    ) {
       cart = cart.filter(
         (i) => i.id !== id
       );
@@ -170,28 +243,41 @@ function removeFromCart(id) {
 
 function updateCart() {
   const cartContainer =
-    document.getElementById("cart-items");
+    document.getElementById(
+      "cart-items"
+    );
 
-  cartContainer.innerHTML = "";
+  if (!cartContainer) return;
+
+  cartContainer.innerHTML =
+    "";
 
   let totalPrice = 0;
 
   cart.forEach((item) => {
     const subtotal =
-      item.price * item.quantity;
+      item.price *
+      item.quantity;
 
     const listItem =
-      document.createElement("li");
+      document.createElement(
+        "li"
+      );
 
     listItem.innerHTML = `
       <b>${item.name}</b>
 
       <br>
 
-      Rp ${formatRupiah(item.price)}
+      Rp ${formatRupiah(
+        item.price
+      )}
+
       x ${item.quantity}
 
-      = Rp ${formatRupiah(subtotal)}
+      = Rp ${formatRupiah(
+        subtotal
+      )}
 
       <br><br>
 
@@ -210,15 +296,24 @@ function updateCart() {
       <hr>
     `;
 
-    cartContainer.appendChild(listItem);
+    cartContainer.appendChild(
+      listItem
+    );
 
     totalPrice += subtotal;
   });
 
-  document.getElementById(
-    "total-price"
-  ).textContent =
-    formatRupiah(totalPrice);
+  const totalElement =
+    document.getElementById(
+      "total-price"
+    );
+
+  if (totalElement) {
+    totalElement.textContent =
+      formatRupiah(
+        totalPrice
+      );
+  }
 
   saveCart();
 }
@@ -229,13 +324,18 @@ function updateCart() {
 
 function checkout() {
   if (cart.length === 0) {
-    alert("Keranjang anda kosong.");
+    alert(
+      "Keranjang anda kosong."
+    );
+
     return;
   }
 
   const total = cart.reduce(
     (sum, item) =>
-      sum + item.price * item.quantity,
+      sum +
+      item.price *
+        item.quantity,
     0
   );
 
@@ -243,7 +343,9 @@ function checkout() {
     prompt(
       `Total belanja anda Rp ${formatRupiah(
         total
-      )}\nMasukkan jumlah pembayaran:`
+      )}
+
+Masukkan jumlah pembayaran:`
     )
   );
 
@@ -263,16 +365,20 @@ function checkout() {
       payment - total;
 
     alert(
-      `Pembayaran berhasil!\nKembalian: Rp ${formatRupiah(
+      `Pembayaran berhasil!
+
+Kembalian: Rp ${formatRupiah(
         change
       )}`
     );
 
     cart = [];
 
-    updateCart();
+    localStorage.removeItem(
+      "cart"
+    );
 
-    localStorage.removeItem("cart");
+    updateCart();
   } else {
     alert(
       "Uang anda tidak mencukupi."
@@ -281,35 +387,43 @@ function checkout() {
 }
 
 // =======================
-// EVENT SEARCH
+// LOAD HALAMAN
 // =======================
 
-document
-  .getElementById("search")
-  .addEventListener(
-    "input",
-    (e) => {
-      displayProducts(
-        e.target.value
-      );
-    }
-  );
+window.onload = () => {
 
-// =======================
-// EVENT CHECKOUT
-// =======================
+  // SEARCH
+  const searchInput =
+    document.getElementById(
+      "search"
+    );
 
-document
-  .getElementById("checkout-btn")
-  .addEventListener(
-    "click",
-    checkout
-  );
+  if (searchInput) {
+    searchInput.addEventListener(
+      "input",
+      (e) => {
+        displayProducts(
+          e.target.value
+        );
+      }
+    );
+  }
 
-// =======================
-// LOAD AWAL
-// =======================
+  // CHECKOUT
+  const checkoutBtn =
+    document.getElementById(
+      "checkout-btn"
+    );
 
-displayProducts();
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener(
+      "click",
+      checkout
+    );
+  }
 
-updateCart();
+  // LOAD DATA
+  displayProducts();
+
+  updateCart();
+};
